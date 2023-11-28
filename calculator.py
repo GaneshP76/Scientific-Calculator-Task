@@ -24,14 +24,12 @@ root.geometry('480x568+450+90')
 # Create a Frame widget, which will act as a container for other widgets like buttons
 calc = Frame(root)
 
-# Arrange the frame using the grid geometry manager
-# This manager divides the window into a grid for placing widgets
+# Arrange the frame using the grid geometry manager which divides the window into a grid for placing widgets
 calc.grid()
 
 
 class Calc():
     def __init__(self):
-        # Constructor for Calc class
         # Initializes various attributes used in the calculator operations
         self.total = 0         # Stores the total result of calculations
         self.current = ''      # Stores the current input number or result
@@ -177,6 +175,14 @@ class Calc():
         self.result = False
         self.current = math.log(float(txtDisplay.get()))
         self.display(self.current)
+        
+    # def setExponent(self, exponent):
+    #     self.exponent = exponent
+        
+    # def power(self):
+    #     self.result = False
+    #     self.current = math.pow(float(txtDisplay.get()), self.exponent)
+    #     self.display(self.current)
 
     def exp(self):
         self.result = False
