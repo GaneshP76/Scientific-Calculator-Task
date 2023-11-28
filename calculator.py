@@ -40,7 +40,7 @@ class Calc():
         self.op = ''            # Stores the operator for calculation
         self.result = False     # Flag to check if the result was just displayed
 
-    def numberEnter(self, num):
+    def Enter_number(self, num):
         # Method to handle number (and decimal point) input
         self.result = False    # Resets the result flag as new input is being entered
         firstnum = txtDisplay.get()  # Get the current value from the calculator's display
@@ -235,7 +235,7 @@ for j in range(2, 5):
         # i += 1
 # set buttons in rows & column and separate them with a padding of 1 unit
         btn[i].grid(row=j, column=k, pady=1)
-        btn[i]['command'] = lambda x=numberpad[i]: added_value.numberEnter(x)
+        btn[i]['command'] = lambda x=numberpad[i]: added_value.Enter_number(x)
         i=i+1
 # # This section creates buttons for specific functionalities: 'C' for clear entry, 'CE' for clear all entries,
 # square root, addition, subtraction, multiplication, division, zero, and decimal point. Each button is configured
@@ -263,10 +263,10 @@ btnDiv = Button(calc, text='/',width=6,height=2,bg='green',font=('Arial',20,'bol
                 bd=4, command=lambda: added_value.operation('divide')).grid(row=4, column=3, pady=1)
 
 btnZero = Button(calc, text='0',width=6,height=2,bg='red',fg='white',font=('Arial',20,'bold'),
-                bd=4, command=lambda: added_value.numberEnter(0)).grid(row=5, column=0, pady=1)
+                bd=4, command=lambda: added_value.Enter_number(0)).grid(row=5, column=0, pady=1)
 
 btnDot = Button(calc, text='.',width=6,height=2,bg='green',font=('Arial',20,'bold'),
-                bd=4, command=lambda: added_value.numberEnter('.')).grid(row=5, column=1, pady=1)
+                bd=4, command=lambda: added_value.Enter_number('.')).grid(row=5, column=1, pady=1)
 
 # Creation of two additional buttons: The '±' button, represented by chr(177), is used to change the sign of the 
 # current number, and the '=' button for executing the calculation and displaying the total. Each button is styled 
@@ -312,7 +312,7 @@ btntanh = Button(calc, text='tanh',width=6,height=2,bg='orange',fg='white',font=
 
 #ROW 3:
 
-btnPi = Button(calc, text='pi',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+btnPi = Button(calc, text='π',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
                 bd=4, command=added_value.pi).grid(row=3, column=4, pady=1)
 
 btnexp = Button(calc, text='exp',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
