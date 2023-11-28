@@ -93,6 +93,9 @@ class Calc():
         self.check_sum = False
         self.display(self.total)
 
+
+ 
+=======
     def operation(self, op):
         #  Sets up the calculator to perform the selected arithmetic operation (like addition, subtraction, etc.) based on the operator passed to it.
         self.current = float(self.current)
@@ -115,94 +118,10 @@ class Calc():
     def All_Clear_Entry(self):
         self.Clear_Entry()
         self.total = 0
+
         
     
-    # Defining Operations on Scientific calculator
-    def pi(self):
-        self.result = False
-        self.current = math.pi
-        self.display(self.current)
-
-    def tau(self):
-        self.result = False
-        self.current = math.tau
-        self.display(self.current)
-
-    def e(self):
-        self.result = False
-        self.current = math.e
-        self.display(self.current)
-
-    def mathPM(self):
-        self.result = False
-        self.current = -(float(txtDisplay.get()))
-        self.display(self.current)
-
-    def squared(self):
-        self.result = False
-        self.current = math.sqrt(float(txtDisplay.get()))
-        self.display(self.current)
-
-    def cos(self):
-        self.result = False
-        self.current = math.cos(math.radians(float(txtDisplay.get())))
-        self.display(self.current)
-
-    def cosh(self):
-        self.result = False
-        self.current = math.cosh(math.radians(float(txtDisplay.get())))
-        self.display(self.current)
-
-    def tan(self):
-        self.result = False
-        self.current = math.cosh(math.radians(float(txtDisplay.get())))
-        self.display(self.current)
-
-    def tanh(self):
-        self.result = False
-        self.current = math.cosh(math.radians(float(txtDisplay.get())))
-        self.display(self.current)
-
-    def sin(self):
-        self.result = False
-        self.current = math.tan(math.radians(float(txtDisplay.get())))
-        self.display(self.current)
-
-    def sinh(self):
-        self.result = False
-        self.current = math.sinh(math.radians(float(txtDisplay.get())))
-        self.display(self.current)
-
-    def log(self):
-        self.result = False
-        self.current = math.log(float(txtDisplay.get()))
-        self.display(self.current)
-
-    def exp(self):
-        self.result = False
-        self.current = math.exp(float(txtDisplay.get()))
-        self.display(self.current)
-
-    def acosh(self):
-        self.result = False
-        self.current = math.acosh(float(txtDisplay.get()))
-        self.display(self.current)
-
-    def asinh(self):
-        self.result = False
-        self.current = math.asinh(float(txtDisplay.get()))
-        self.display(self.current)
-
-    def degrees(self):
-        self.result = False
-        self.current = math.degrees(float(txtDisplay.get()))
-        self.display(self.current)
-
-    def log10(self):
-        self.result = False
-        self.current = math.log10(float(txtDisplay.get()))
-        self.display(self.current)
-
+##############################################################################################
 # Create an instance of the Calc class to handle the calculator's logic
 added_value = Calc()
 
@@ -216,6 +135,8 @@ txtDisplay.grid(row=0, column=0, columnspan=4, pady=1)
 # Initialize the display with '0'
 txtDisplay.insert(0, '0')
 
+
+=======
 # Define the sequence of numbers for the number pad buttons
 numberpad = '789456123'
 
@@ -379,7 +300,6 @@ menubar.add_command(label='Standard', command=Standard)
 # MENUBAR 2: Scientific Calculator
 menubar.add_command(label='Scientific', command=Scientific)
 
-root.config(menu=menubar)
 root.mainloop()
 
 
