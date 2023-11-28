@@ -40,7 +40,7 @@ class Calc():
         self.op = ''            # Stores the operator for calculation
         self.result = False     # Flag to check if the result was just displayed
 
-    def Enter_number(self, num):
+    def numberEnter(self, num):
         # Method to handle number (and decimal point) input
         self.result = False    # Resets the result flag as new input is being entered
         firstnum = txtDisplay.get()  # Get the current value from the calculator's display
@@ -65,7 +65,7 @@ class Calc():
         self.result = True
         self.current = float(self.current)
         if self.check_sum == True:
-            self.valid_function()
+            self.Logic_valid_function()
         else:
             self.total = float(txtDisplay.get())
 
@@ -77,17 +77,17 @@ class Calc():
         txtDisplay.insert(0, value)
 
 
-    def valid_function(self):
+    def Logic_valid_function(self):
          # This method checks the operation to perform based on the self.op value
-        if self.op == 'add':
+        if self.op == 'addition':
             self.total += self.current
-        elif self.op == 'sub':
+        elif self.op == 'subtraction':
             self.total -= self.current
-        elif self.op == 'multi':
+        elif self.op == 'multiplication':
             self.total *= self.current
-        elif self.op == 'divide':
+        elif self.op == 'division':
             self.total /= self.current
-        elif self.op == 'mod':
+        elif self.op == 'Modulus':
             self.total %= self.current
         self.input_value = True
         self.check_sum = False
@@ -97,7 +97,7 @@ class Calc():
         #  Sets up the calculator to perform the selected arithmetic operation (like addition, subtraction, etc.) based on the operator passed to it.
         self.current = float(self.current)
         if self.check_sum:
-            self.valid_function()
+            self.Logic_valid_function()
         elif not self.result:
             self.total = self.current
             self.input_value = True
@@ -235,7 +235,7 @@ for j in range(2, 5):
         # i += 1
 # set buttons in rows & column and separate them with a padding of 1 unit
         btn[i].grid(row=j, column=k, pady=1)
-        btn[i]['command'] = lambda x=numberpad[i]: added_value.Enter_number(x)
+        btn[i]['command'] = lambda x=numberpad[i]: added_value.numberEnter(x)
         i=i+1
 # # This section creates buttons for specific functionalities: 'C' for clear entry, 'CE' for clear all entries,
 # square root, addition, subtraction, multiplication, division, zero, and decimal point. Each button is configured
@@ -251,22 +251,22 @@ btnsq = Button(calc, text='\u221A',width=6,height=2,bg='green',font=('Arial',20,
                bd=4, command=added_value.squared).grid(row=1, column=2, pady=1)
 
 btnAdd = Button(calc, text='+',width=6,height=2,bg='green',font=('Arial',20,'bold'),
-                bd=4, command=lambda: added_value.operation('add')).grid(row=1, column=3, pady=1)
+                bd=4, command=lambda: added_value.operation('addition')).grid(row=1, column=3, pady=1)
 
 btnSub = Button(calc, text='-',width=6,height=2,bg='green',font=('Arial',20,'bold'),
-                bd=4, command=lambda: added_value.operation('sub')).grid(row=2, column=3, pady=1)
+                bd=4, command=lambda: added_value.operation('subtraction')).grid(row=2, column=3, pady=1)
 
 btnMul = Button(calc, text='x',width=6,height=2,bg='green',font=('Arial',20,'bold'),
-                bd=4, command=lambda: added_value.operation('multi')).grid(row=3, column=3, pady=1)
+                bd=4, command=lambda: added_value.operation('multiplication')).grid(row=3, column=3, pady=1)
 
 btnDiv = Button(calc, text='/',width=6,height=2,bg='green',font=('Arial',20,'bold'),
-                bd=4, command=lambda: added_value.operation('divide')).grid(row=4, column=3, pady=1)
+                bd=4, command=lambda: added_value.operation('division')).grid(row=4, column=3, pady=1)
 
 btnZero = Button(calc, text='0',width=6,height=2,bg='red',fg='white',font=('Arial',20,'bold'),
-                bd=4, command=lambda: added_value.Enter_number(0)).grid(row=5, column=0, pady=1)
+                bd=4, command=lambda: added_value.numberEnter(0)).grid(row=5, column=0, pady=1)
 
 btnDot = Button(calc, text='.',width=6,height=2,bg='green',font=('Arial',20,'bold'),
-                bd=4, command=lambda: added_value.Enter_number('.')).grid(row=5, column=1, pady=1)
+                bd=4, command=lambda: added_value.numberEnter('.')).grid(row=5, column=1, pady=1)
 
 # Creation of two additional buttons: The '±' button, represented by chr(177), is used to change the sign of the 
 # current number, and the '=' button for executing the calculation and displaying the total. Each button is styled 
@@ -281,7 +281,7 @@ btnEquals = Button(calc, text='=',width=6,height=2,bg='green',font=('Arial',20,'
 # Creation of scientific function buttons in multiple rows: 
 # Row 1 includes buttons for trigonometric functions (sin, cos, tan).
 # Row 2 includes buttons for hyperbolic functions (sinh, cosh, tanh).
-# Row 3 includes buttons for mathematical constants and functions (pi, exp, mod).
+# Row 3 includes buttons for mathematical constants and functions (pi, exp, Modulus).
 # Row 4 includes buttons for logarithmic functions and Euler's number (e, log, log10).
 # Row 5 includes buttons for degree conversion and inverse hyperbolic functions (deg, acosh, asinh).
 # Additionally, a label 'Scientific Calculator' is created and displayed at the top of these buttons.
@@ -312,14 +312,14 @@ btntanh = Button(calc, text='tanh',width=6,height=2,bg='orange',fg='white',font=
 
 #ROW 3:
 
-btnPi = Button(calc, text='π',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+btnPi = Button(calc, text='pi',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
                 bd=4, command=added_value.pi).grid(row=3, column=4, pady=1)
 
 btnexp = Button(calc, text='exp',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
                 bd=4, command=added_value.exp).grid(row=3, column=5, pady=1)
 
 btnmod = Button(calc, text='mod',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
-                bd=4, command=lambda: added_value.operation('mod')).grid(row=3, column=6, pady=1)
+                bd=4, command=lambda: added_value.operation('Modulus')).grid(row=3, column=6, pady=1)
 
 
 #ROW 4:
