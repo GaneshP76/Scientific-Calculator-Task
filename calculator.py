@@ -218,6 +218,67 @@ txtDisplay.grid(row=0, column=0, columnspan=4, pady=1)
 # Initialize the display with '0'
 txtDisplay.insert(0, '0')
 
+# Define the sequence of numbers for the number pad buttons
+numberpad = '789456123'
+
+# Variable to keep track of the current number button position
+i = 0
+
+# Create an empty list to store the button widgets
+btn = []
+
+# Loop through rows and columns to place number buttons
+for j in range(2, 5):
+    for k in range(3):
+        # Create a button for each number, set its properties and add it to the btn list
+        btn.append(Button(calc, width=6, height=2, bg='blue', fg='white',
+                          font=('Arial',20,'bold'), bd=4, text=numberpad[i]))
+        # # Increment the position for the next number
+        # i += 1
+# set buttons in rows & column and separate them with a padding of 1 unit
+        btn[i].grid(row=j, column=k, pady=1)
+        btn[i]['command'] = lambda x=numberpad[i]: added_value.Enter_number(x)
+        i=i+1
+# # This section creates buttons for specific functionalities: 'C' for clear entry, 'CE' for clear all entries,
+# square root, addition, subtraction, multiplication, division, zero, and decimal point. Each button is configured
+# with size, color, font, and bound to respective functions in the Calc class to perform calculator operations.
+
+btnClear = Button(calc, text='C',width=6,height=2,bg='green',font=('Arial',20,'bold'),
+                  bd=4, command=added_value.Clear_Entry).grid(row=1, column=0, pady=1)
+
+btnAllClear = Button(calc, text='AC',width=6,height=2,bg='green',font=('Arial',20,'bold'),
+                     bd=4, command=added_value.All_Clear_Entry).grid(row=1, column=1, pady=1)
+
+btnsq = Button(calc, text='\u221A',width=6,height=2,bg='green',font=('Arial',20,'bold'),
+               bd=4, command=added_value.squared).grid(row=1, column=2, pady=1)
+
+btnAdd = Button(calc, text='+',width=6,height=2,bg='green',font=('Arial',20,'bold'),
+                bd=4, command=lambda: added_value.operation('add')).grid(row=1, column=3, pady=1)
+
+btnSub = Button(calc, text='-',width=6,height=2,bg='green',font=('Arial',20,'bold'),
+                bd=4, command=lambda: added_value.operation('sub')).grid(row=2, column=3, pady=1)
+
+btnMul = Button(calc, text='x',width=6,height=2,bg='green',font=('Arial',20,'bold'),
+                bd=4, command=lambda: added_value.operation('multi')).grid(row=3, column=3, pady=1)
+
+btnDiv = Button(calc, text='/',width=6,height=2,bg='green',font=('Arial',20,'bold'),
+                bd=4, command=lambda: added_value.operation('divide')).grid(row=4, column=3, pady=1)
+
+btnZero = Button(calc, text='0',width=6,height=2,bg='red',fg='white',font=('Arial',20,'bold'),
+                bd=4, command=lambda: added_value.Enter_number(0)).grid(row=5, column=0, pady=1)
+
+btnDot = Button(calc, text='.',width=6,height=2,bg='green',font=('Arial',20,'bold'),
+                bd=4, command=lambda: added_value.Enter_number('.')).grid(row=5, column=1, pady=1)
+
+# Creation of two additional buttons: The '±' button, represented by chr(177), is used to change the sign of the 
+# current number, and the '=' button for executing the calculation and displaying the total. Each button is styled 
+# and linked to respective functions in the Calc class to handle sign change and final calculation.
+
+btnPM = Button(calc, text=chr(177),width=6,height=2,bg='green',font=('Arial',20,'bold'),
+               bd=4, command=added_value.mathPM).grid(row=5, column=2, pady=1)
+
+btnEquals = Button(calc, text='=',width=6,height=2,bg='green',font=('Arial',20,'bold'),
+                   bd=4, command=added_value.sum_of_total).grid(row=5, column=3, pady=1)
 
 
 
