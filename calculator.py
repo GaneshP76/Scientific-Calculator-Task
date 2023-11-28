@@ -79,15 +79,15 @@ class Calc():
 
     def valid_function(self):
          # This method checks the operation to perform based on the self.op value
-        if self.op == 'addition':
+        if self.op == 'add':
             self.total += self.current
-        elif self.op == 'subtraction':
+        elif self.op == 'sub':
             self.total -= self.current
-        elif self.op == 'multiplication':
+        elif self.op == 'multi':
             self.total *= self.current
-        elif self.op == 'division':
+        elif self.op == 'divide':
             self.total /= self.current
-        elif self.op == 'Modulus':
+        elif self.op == 'mod':
             self.total %= self.current
         self.input_value = True
         self.check_sum = False
@@ -115,8 +115,9 @@ class Calc():
     def All_Clear_Entry(self):
         self.Clear_Entry()
         self.total = 0
-
-     # Defining Operations on Scientific calculator
+        
+    
+    # Defining Operations on Scientific calculator
     def pi(self):
         self.result = False
         self.current = math.pi
@@ -203,9 +204,6 @@ class Calc():
         self.display(self.current)
 
 # Create an instance of the Calc class to handle the calculator's logic
-added_value = Calc()       
-    
-# Create an instance of the Calc class to handle the calculator's logic
 added_value = Calc()
 
 # Create a text entry widget for displaying calculations and results
@@ -280,8 +278,108 @@ btnPM = Button(calc, text=chr(177),width=6,height=2,bg='green',font=('Arial',20,
 btnEquals = Button(calc, text='=',width=6,height=2,bg='green',font=('Arial',20,'bold'),
                    bd=4, command=added_value.sum_of_total).grid(row=5, column=3, pady=1)
 
+# Creation of scientific function buttons in multiple rows: 
+# Row 1 includes buttons for trigonometric functions (sin, cos, tan).
+# Row 2 includes buttons for hyperbolic functions (sinh, cosh, tanh).
+# Row 3 includes buttons for mathematical constants and functions (pi, exp, mod).
+# Row 4 includes buttons for logarithmic functions and Euler's number (e, log, log10).
+# Row 5 includes buttons for degree conversion and inverse hyperbolic functions (deg, acosh, asinh).
+# Additionally, a label 'Scientific Calculator' is created and displayed at the top of these buttons.
+# Each button is styled consistently and assigned functions to perform specific scientific calculations.
+
+#ROW 1:
+btnsin = Button(calc, text='sin',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                bd=4, command=added_value.sin).grid(row=1, column=4, pady=1)
+
+btncos = Button(calc, text='Cos',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                bd=4, command=added_value.cos).grid(row=1, column=5, pady=1)
+
+btntan = Button(calc, text='tan',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                bd=4, command=added_value.tan).grid(row=1, column=6, pady=1)
 
 
+#ROW 2:
+
+btnsinh=Button(calc, text='sinh',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+               bd=4, command=added_value.sinh).grid(row=2, column=4, pady=1)
+
+btncosh = Button(calc, text='Cosh',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                 bd=4, command=added_value.cosh).grid(row=2, column=5, pady=1)
+
+btntanh = Button(calc, text='tanh',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                 bd=4, command=added_value.tanh).grid(row=2, column=6, pady=1)
+
+
+#ROW 3:
+
+btnPi = Button(calc, text='π',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                bd=4, command=added_value.pi).grid(row=3, column=4, pady=1)
+
+btnexp = Button(calc, text='exp',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                bd=4, command=added_value.exp).grid(row=3, column=5, pady=1)
+
+btnmod = Button(calc, text='mod',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                bd=4, command=lambda: added_value.operation('mod')).grid(row=3, column=6, pady=1)
+
+
+#ROW 4:
+
+btne = Button(calc, text='e',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+              bd=4, command=added_value.e).grid(row=4, column=4, pady=1)
+
+btnlog = Button(calc, text='log',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                bd=4, command=added_value.log).grid(row=4, column=5, pady=1)
+
+btnlog10 = Button(calc, text='log10',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                  bd=4, command=added_value.log10).grid(row=4, column=6, pady=1)
+
+
+
+#ROW 5:
+
+btndeg = Button(calc, text='deg',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                bd=4, command=added_value.degrees).grid(row=5, column=4, pady=1)
+
+btnacosh = Button(calc, text='acosh',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                  bd=4, command=added_value.acosh).grid(row=5, column=5, pady=1)
+
+btnasinh = Button(calc, text='asinh',width=6,height=2,bg='orange',fg='white',font=('Arial',20,'bold'),
+                  bd=4, command=added_value.asinh).grid(row=5, column=6, pady=1)
+
+lblDisplay = Label(calc, text='Scientific Calculator',font=('Georgia',22,'bold'),
+                   bg='black',fg='white',justify=CENTER)
+
+lblDisplay.grid(row=0, column=4, columnspan=4)
+
+# This function is used to prompt the user for confirmation before exiting the application.
+# It uses the askyesno function from tkinter.messagebox to display a dialog box with the message
+def iExit():
+    iExit = tkinter.messagbox.askyesno('Scientific Calculator','Do you want to exit ?')
+    
+    if iExit>0:
+        root.destroy()
+        return
+
+# These functions are used to switch the calculator's layout between Scientific and Standard modes.
+# In both functions, the window's resizable property is set to False to prevent resizing, maintaining a fixed layout.
+ 
+def Scientific():
+    root.resizable(width=False, height=False)
+    root.geometry("830x568+0+0")
+
+def Standard():
+    root.resizable(width=False, height=False)
+    root.geometry("480x568+0+0")
+
+menubar = Menu(calc)
+
+# MENUBAR 1: Standard Calculator
+menubar.add_command(label='Standard', command=Standard)
+
+# MENUBAR 2: Scientific Calculator
+menubar.add_command(label='Scientific', command=Scientific)
+
+root.config(menu=menubar)
 root.mainloop()
 
 
